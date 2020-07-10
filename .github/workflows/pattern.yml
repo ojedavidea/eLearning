@@ -12,7 +12,7 @@ jobs:
       
     - name: check and dispatch
       run: |
-           STR="2", "3"
+           STR="2"
            if [ `grep -c "$STR" 0/1` -ne '0' ];
            then
              echo "NEXTEP"
