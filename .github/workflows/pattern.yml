@@ -9,7 +9,12 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
-      
+    
+    - name: Labeler
+      uses: actions/labeler@v3-preview
+        triage:
+        - 0/1
+
     - name: Dispatch 0/1
       run: |
            STR="two"
@@ -20,14 +25,14 @@ jobs:
              --url ${{ github.event.pull_request.issue_url }} \
              --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
              --data '{"milestone": 2}'
-             curl --request PATCH \
-             --url ${{ github.event.pull_request.issue_url }} \
-             --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-             --data '{"labels": [ "letters" ]}'
-             curl --request PATCH \
-             --url ${{ github.event.pull_request.issue_url }} \
-             --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-             --data '{"labels": [ "on 1st" ]}'
+#             curl --request PATCH \
+#             --url ${{ github.event.pull_request.issue_url }} \
+#             --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+#             --data '{"labels": [ "letters" ]}'
+#             curl --request PATCH \
+#             --url ${{ github.event.pull_request.issue_url }} \
+#             --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+#             --data '{"labels": [ "on 1st" ]}'
              curl --request POST \
              --url ${{ github.event.pull_request.issue_url }}/comments \
              --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
