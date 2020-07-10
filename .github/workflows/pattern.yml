@@ -10,9 +10,9 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
       
-    - name: check and dispatch
+    - name: Dispatch 0/1
       run: |
-           STR="2"
+           STR="two"
            if [ `grep -c "$STR" 0/1` -ne '0' ];
            then
              echo "NEXTEP"
@@ -23,8 +23,11 @@ jobs:
              curl --request PATCH \
              --url ${{ github.event.pull_request.issue_url }} \
              --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-             --data '{"labels": [ "on 1st" ]}'\
-             --data '{"labels": [ "success" ]}'
+             --data '{"labels": [ "letters" ]}'
+             curl --request PATCH \
+             --url ${{ github.event.pull_request.issue_url }} \
+             --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+             --data '{"labels": [ "on 1st" ]}'
              curl --request POST \
              --url ${{ github.event.pull_request.issue_url }}/comments \
              --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
