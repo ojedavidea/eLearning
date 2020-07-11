@@ -23,7 +23,7 @@ jobs:
            curl --request PATCH \
            --url ${{ github.event.pull_request.issue_url }} \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"labels": [ "0" ] && "labels": [ "1" ] && "labels": [ "2" ]}'
+           --data '{"labels": [ "1" ]}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
@@ -37,7 +37,7 @@ jobs:
            curl --request PATCH \
            --url ${{ github.event.pull_request.issue_url }} \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"labels": [ "-0" ] && "labels": [ "-1" ] && "labels": [ "-2" ]}'
+           --data '{"labels": [ "-1" ]}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
