@@ -1,0 +1,50 @@
+name: splitter
+
+on:
+  pull_request:
+
+jobs:
+  splitter1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Dispatcher 1
+      run: |
+        line=$(tail -n 2 0/1)
+        SUB="name: Octocat"
+        if grep -q "$SUB" <<< "$line";
+        then
+           echo "NEXTEP"
+           curl --request PATCH \
+           --url ${{ github.event.pull_request.issue_url }} \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"milestone": 1}'
+           curl --request PATCH \
+           --url ${{ github.event.pull_request.issue_url }} \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"labels": [ "0" ] && "labels": [ "1" ] && "labels": [ "2" ]}'
+           curl --request POST \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"body": "first comment"}'
+           curl --request POST \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"body": "second comment"}'
+        else
+           echo "FLIP"
+           curl --request PATCH \
+           --url ${{ github.event.pull_request.issue_url }} \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"labels": [ "-0" ] && "labels": [ "-1" ] && "labels": [ "-2" ]}'
+           curl --request POST \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"body": "minus first comment"}'
+           curl --request POST \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"body": "minus second comment"}'
+           exit 1
+        fi
