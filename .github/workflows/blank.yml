@@ -24,7 +24,7 @@ jobs:
       run: |
         file=$( git diff-tree --no-commit-id --name-only -r ${{ github.event.after }} )
         echo $file
-        line=$(sed -n '2p' $file)
+        line=$(tail -n 1 $file)
         echo $line
         SUB='name: Octocat'
         if grep -q "$SUB" <<< "$line"; 
