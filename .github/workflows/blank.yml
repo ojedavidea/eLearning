@@ -40,7 +40,7 @@ jobs:
       run: |
         file=$( git diff-tree --no-commit-id --name-only -r ${{ github.sha }} )
         echo $file
-        line=$(sed -n '1p' $file)
+        line=$(tail -n 3 $file)
         SUB='name: Octocat'
         if grep -q "$SUB" <<< "$line"; 
         then
