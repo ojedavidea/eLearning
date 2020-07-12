@@ -2,6 +2,8 @@ name: splitter
 
 on:
   pull_request:
+    paths: 
+      - 0/1
 
 jobs:
   splitter1:
