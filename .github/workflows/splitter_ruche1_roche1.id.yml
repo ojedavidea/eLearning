@@ -1,9 +1,9 @@
-name: splitter_ruche1-roche1.id
+name: splitter_ruche1_roche1.id
 
 on:
   pull_request:
     paths: 
-      - 0/1/ruche1-roche1*
+      - 0/1/ruche1_roche1*
 
 jobs:
   splitter_ruche1_roche1_id_1:
@@ -13,7 +13,7 @@ jobs:
 
     - name: Dispatcher_ruche1_roche1_id_1_1
       run: |
-        line=$(tail -n 2 0/1/ruche1-roche1*)
+        line=$(tail -n 2 0/1/ruche1_roche1*)
         SUB="name: Octocat"
         if grep -q "$SUB" <<< "$line";
         then
@@ -45,7 +45,7 @@ jobs:
 
     - name: Dispatcher_ruche1_roche1_id_1_2
       run: |
-        line=$(tail -n 3 0/1/ruche1-roche1*)
+        line=$(tail -n 3 0/1/ruche1_roche1*)
         SUB="My Name"
         if grep -q "$SUB" <<< "$line";
         then
