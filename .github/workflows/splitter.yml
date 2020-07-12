@@ -22,7 +22,7 @@ jobs:
            --url ${{ github.event.pull_request.issue_url }} \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
            --data '{"milestone": 1}'
-           curl --request PATCH \
+           curl --request POST \
            --url ${{ github.event.pull_request.issue_url }} \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
            --data '{"labels": [ "1" ]}'
