@@ -87,14 +87,10 @@ jobs:
            exit 1
         fi
 
-  splitter2:
+  reussite:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
+      - uses: actions/labeler@v2
         with:
-          github_token: ${{ secrets.github_token }}
-          labels: |
-            documentation
-            changelog
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          configuration-path: .github/reussite.yml
