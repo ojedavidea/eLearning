@@ -1,19 +1,19 @@
-name: splitter_ruche-1.id
+name: splitter_ruche1-roche1.id
 
 on:
   pull_request:
     paths: 
-      - 0/1/ruche-1.id
+      - 0/1/ruche1-roche1*
 
 jobs:
-  splitter_ruche_1_id_1:
+  splitter_ruche1_roche1_id_1:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
-    - name: Dispatcher_ruche-1.id_1_1
+    - name: Dispatcher_ruche1_roche1_id_1_1
       run: |
-        line=$(tail -n 2 0/1/ruche-1.id)
+        line=$(tail -n 2 0/1/ruche1-roche1*)
         SUB="name: Octocat"
         if grep -q "$SUB" <<< "$line";
         then
@@ -43,9 +43,9 @@ jobs:
            exit 1
         fi
 
-    - name: Dispatcher_0/1/ruche-1.id_1_2
+    - name: Dispatcher_ruche1_roche1_id_1_2
       run: |
-        line=$(tail -n 3 0/1/ruche-1.id)
+        line=$(tail -n 3 0/1/ruche1-roche1*)
         SUB="My Name"
         if grep -q "$SUB" <<< "$line";
         then
@@ -72,7 +72,7 @@ jobs:
         fi
 
   labeler:
-    needs: splitter_ruche_1_id_1
+    needs: splitter_ruche1_roche1_id_1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v2
