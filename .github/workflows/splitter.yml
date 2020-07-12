@@ -63,11 +63,11 @@ jobs:
            curl --request PATCH \
            --url ${{ github.event.pull_request.issue_url }} \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"labels": [ "$SUB" ]}'
+           --data '{"labels": [ ${{SUB}} ]}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "$SUB"}'
+           --data '{"body": ${{SUB}}}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
