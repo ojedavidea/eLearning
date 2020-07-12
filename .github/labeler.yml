@@ -5,7 +5,7 @@ level2:
 - 0/1/*
 
 ruche1:
-- 0/**/ruche-*
+- 0/**/ruche1-*
 
 roche1:
-- 0/1/ruche-1.id
+- 0/1/ruche1-roche1*
