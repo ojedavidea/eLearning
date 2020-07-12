@@ -2,9 +2,7 @@ name: Add Labels
 
 on:
   pull_request:
-    issue_comment:
-    types: [created]
-
+    types: [opened]
 
 jobs:
   add_labels:
