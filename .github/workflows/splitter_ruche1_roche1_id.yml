@@ -25,21 +25,21 @@ jobs:
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "first comment 1"}'
+           --data '{"body": "ruche comment 1"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "second comment 1"}'
+           --data '{"body": "ruche comment 2"}'
         else
            echo "FLIP"
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "minus first comment 1"}'
+           --data '{"body": "minus ruche comment 1"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "minus second comment 1"}'
+           --data '{"body": "minus ruche comment 2"}'
            exit 1
         fi
 
@@ -53,21 +53,21 @@ jobs:
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "first comment 2"}'
+           --data '{"body": "roche comment 1"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "second comment 2"}'
+           --data '{"body": "roche comment 2"}'
         else
            echo "FLIP"
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "minus first comment 2"}'
+           --data '{"body": "minus roche comment 1"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "minus second comment 2"}'
+           --data '{"body": "minus roche comment 2"}'
            exit 1
         fi
 
