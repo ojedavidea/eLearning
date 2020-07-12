@@ -1,4 +1,4 @@
-name: splitter
+name: splitter1
 
 on:
   pull_request:
@@ -23,35 +23,27 @@ jobs:
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
            --data '{"milestone": 1}'
            curl --request POST \
-           --url ${{ github.event.pull_request.issue_url }} \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"labels": [ "1" ]}'
+           --data '{"body": "first comment 1"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "/add-labels"}'
-           curl --request POST \
-           --url ${{ github.event.pull_request.issue_url }}/comments \
-           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "second comment"}'
+           --data '{"body": "second comment 1"}'
         else
            echo "FLIP"
-           curl --request PATCH \
-           --url ${{ github.event.pull_request.issue_url }} \
-           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"labels": [ "-1" ]}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "minus first comment"}'
+           --data '{"body": "minus first comment 1"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "minus second comment"}'
+           --data '{"body": "minus second comment 1"}'
            exit 1
         fi
 
-    - name: Namer 1
+    - name: Dispatcher 2
       run: |
         line=$(tail -n 3 0/1)
         SUB="My Name"
@@ -59,35 +51,28 @@ jobs:
         then
            echo "NEXTEP"
            curl --request POST \
-           --url ${{ github.event.pull_request.issue_url }} \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"labels": [ "SUB" ]}'
+           --data '{"body": "first comment 2"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "SUB"}'
-           curl --request POST \
-           --url ${{ github.event.pull_request.issue_url }}/comments \
-           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "second comment"}'
+           --data '{"body": "second comment 2"}'
         else
            echo "FLIP"
-           curl --request PATCH \
-           --url ${{ github.event.pull_request.issue_url }} \
-           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"labels": [ "-1" ]}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "minus first comment"}'
+           --data '{"body": "minus first comment 2"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "minus second comment"}'
+           --data '{"body": "minus second comment 2"}'
            exit 1
         fi
 
   reussite:
+    needs: splitter1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v2
