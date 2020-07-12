@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ github.event.comment.body('first comment') }}
+        if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
         with:
           github_token: ${{ secrets.github_token }}
           labels: |
-            documentationfirst
-            changelogfirst
+            documentation
+            changelog
