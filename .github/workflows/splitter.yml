@@ -48,3 +48,43 @@ jobs:
            --data '{"body": "minus second comment"}'
            exit 1
         fi
+
+    - name: Namer 1
+      run: |
+        line=$(tail -n 3 0/1)
+        SUB="My Name"
+        if grep -q "$SUB" <<< "$line";
+        then
+           echo "NEXTEP"
+           curl --request PATCH \
+           --url ${{ github.event.pull_request.issue_url }} \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"milestone": 1}'
+           curl --request PATCH \
+           --url ${{ github.event.pull_request.issue_url }} \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"labels": [ "$SUB" ]}'
+           curl --request POST \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"body": "$SUB"}'
+           curl --request POST \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"body": "second comment"}'
+        else
+           echo "FLIP"
+           curl --request PATCH \
+           --url ${{ github.event.pull_request.issue_url }} \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"labels": [ "-1" ]}'
+           curl --request POST \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"body": "minus first comment"}'
+           curl --request POST \
+           --url ${{ github.event.pull_request.issue_url }}/comments \
+           --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+           --data '{"body": "minus second comment"}'
+           exit 1
+        fi
