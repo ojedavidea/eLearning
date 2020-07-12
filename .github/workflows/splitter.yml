@@ -27,7 +27,7 @@ jobs:
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-           --data '{"body": "/add-labels first comment"}'
+           --data '{"body": "/add-labels"}'
            curl --request POST \
            --url ${{ github.event.pull_request.issue_url }}/comments \
            --header 'authorization: token ${{ secrets.GITHUB_TOKEN }}' \
