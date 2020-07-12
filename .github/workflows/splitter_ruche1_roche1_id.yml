@@ -14,7 +14,7 @@ jobs:
     - name: Dispatcher_ruche1_roche1_id_1_1
       run: |
         line=$(tail -n 2 0/1/ruche1_roche1*)
-        SUB="name: Octocat"
+        SUB="ruche1"
         if grep -q "$SUB" <<< "$line";
         then
            echo "NEXTEP"
@@ -46,7 +46,7 @@ jobs:
     - name: Dispatcher_ruche1_roche1_id_1_2
       run: |
         line=$(tail -n 3 0/1/ruche1_roche1*)
-        SUB="My Name"
+        SUB="roche1"
         if grep -q "$SUB" <<< "$line";
         then
            echo "NEXTEP"
