@@ -6,12 +6,12 @@ on:
       - 0/1
 
 jobs:
-  splitter1:
+  splitter1_1:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
-    - name: Dispatcher 1
+    - name: Dispatcher1_1_1
       run: |
         line=$(tail -n 2 0/1)
         SUB="name: Octocat"
@@ -43,7 +43,7 @@ jobs:
            exit 1
         fi
 
-    - name: Dispatcher 2
+    - name: Dispatcher1_1_2
       run: |
         line=$(tail -n 3 0/1)
         SUB="My Name"
@@ -71,11 +71,11 @@ jobs:
            exit 1
         fi
 
-  reussite:
-    needs: splitter1
+  labeler:
+    needs: splitter1_1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          configuration-path: .github/reussite.yml
+          configuration-path: .github/labeler.yml
